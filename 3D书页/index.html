@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D书页</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            margin: 0;
+            background-color: black;
+            overflow: hidden;
+            -moz-user-select: none;
+        }
+        main{
+            /* 定宽居中 */
+            width: 300px;
+            height: 400px;
+            margin: 200px auto;
+            /* 相对定位 */
+            position: relative;
+            /* 景深 */
+            perspective: 1000px;
+            /* 视角 */
+            perspective-origin: 60% 60%;
+            /* 子物体以3D形式布局 */
+            transform-style: preserve-3d;
+        }
+        section{
+            width: 100%;
+            height: 100%;
+            /* 透明度 */
+            /* opacity: 0.75; */
+            /* 绝对定位 */
+            position: absolute;
+            /* 锚点 */
+            transform-origin: 0% 50%;
+        }
+        section i{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        section:nth-child(1){
+            background-color: yellow;
+            transform: rotateY(-2deg);
+        }
+        section:nth-child(2){
+            background-color: rgb(255, 0, 0);
+            transform: rotateY(-15deg);
+        }
+        section:nth-child(3){
+            background-color: rgb(255, 0, 221);
+            transform: rotateY(-30deg);
+        }
+        section:nth-child(4){
+            background-color: rgb(255, 115, 0);
+            transform: rotateY(-45deg);
+        }
+        h2{
+            text-align: center;
+            color: white;
+        }
+        section:nth-child(4) p{
+            color: #eee;
+            /* 首行缩进 */
+            text-indent: 2em;
+            /* 字体大小 */
+            font-size: 13px;
+            /* 外间距 */
+            margin: 10px 35px;
+        }
+        section:nth-child(4) span{
+            color: rgb(190, 180, 180)
+            position
+        }
+        section:nth-child(5){
+            background-color: rgb(17, 9, 128);
+            transform: rotateY(-60deg);
+            /* 过度动画 */
+            transition: transform 1s;
+        }
+        section:nth-child(5):active{
+            transform: rotateY(-120deg);
+        }
+        h1{
+            text-align: center;
+            color: rgb(149, 199, 33);
+            margin-top: 100px;
+        }
+        section:nth-child(5) span{
+            font-size: 30px;
+            color: rgb(241, 15, 15);
+            position: absolute;
+            bottom: 100px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <i>4</i>
+        </section>
+        <section>
+            <i>3</i>
+        </section>
+        <section>
+            <i>2</i>
+        </section>
+        <section>
+            <i>1</i>
+            <h2>引言</h2>
+            <P>矩阵在图形变换中有广泛的应用，也是图形变换的数学基础。缩放、旋转、倾斜变换只需要使用 2 x 2 矩阵，
+                    如果把平移也加入进来，将得到 2 x 3 矩阵，如果进一步扩充，可以使用一个 3 x 3 的矩阵表示所有的基本2D变换。
+                    多个变换矩阵相乘将得到组合变换的效果。3D变换也可以很方便地用 4 x 4 的矩阵表示</P>
+            <p>      在图形变换过程中，普通的几何图形只需要考虑顶点即可。旋转变换时需要使用三角函数。
+                    为了在平面显示器中看到3D效果，还需要使用透视理论。</p>
+            <span>智游H5教研组 编著</span>
+        </section>
+        <section>
+          <h1>CSS图形变换入门</h1>
+          <span>智游教育</span>
+        </section>
+    </main>
+</body>
+</html>
