@@ -1,106 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>3d</title>
-    <style>
-        /* *{
-            padding: 0;
-            margin: 0px;
-        } */
-        body,
-        html {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            background: radial-gradient(circle, red, green, blue);
-        }
-
-        body {
-            /*弹性布局，影响子元素 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* 调整景深 */
-            perspective: 1500px;
-        }
-
-        main {
-            background-color: red;
-            width: 300px;
-            height: 300px;
-            /* 让子元素以3D样式布局 */
-            transform-style: preserve-3d;
-            /* 做动画 */
-            animation: tr 1s infinite;
-           
-            /* transform: rotateX(40deg) rotateY(40deg); */
-        }
-
-        main div {
-            width: 300px;
-            height: 300px;
-            position: absolute;
-            background-size: 100%;
-            opacity: 0.8;
-        }
-
-        .before {
-            background-image: url(1.JPG);
-            transform: translateZ(150px);
-        }
-
-        .after {
-            background-image: url(2.JPG);
-            transform: rotateX(180deg) translateZ(150px);
-        }
-
-        .top {
-            background-image: url(3.JPG);
-            transform: rotateX(90deg)translateZ(150px);
-        }
-
-        .bottom {
-            background-image: url(4.JPG);
-            transform: rotateX(-90deg)translateZ(150px);
-        }
-
-        .left {
-            background-image: url(5.JPG);
-            transform: rotateY(-90deg)translateZ(150px);
-        }
-
-        .right {
-            background-image: url(6.JPG);
-            transform: rotateY(90deg)translateZ(150px);
-        }
-
-        @keyframes tr {
-            form {
-                transform: rotateX(0deg) rotateY(0deg);
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>大风车</title>
+        <style>
+            html,body{
+                height: 100%;
             }
-
-            to {
-                transform: rotateX(360deg) rotateY(360deg);
+            body{
+                /* 外间距 */
+                margin: 0;
+                /* 弹性布局 */
+                display: flex;
+                /* 左右居中 */
+                justify-content: center;
+                /* 上下靠底部 */
+                align-items: flex-end;
             }
-
-        }
-    </style>
-</head>
-
-<body>
-<a href="">我是陶磊</a>
-    <main>
-        <div class="before"></div>
-        <div class="after"></div>
-        <div class="top"></div>
-        <div class="bottom"></div>
-        <div class="left"></div>
-        <div class="right"></div>
-    </main>
-</body>
-
+            main{
+                /* 宽度 */
+                width: 1300px;
+                /* 最小宽度 */
+                min-width: 1300px;
+                /* 高度 */
+                height: 500px;
+                /* 背景颜色 */
+                /* background-color:red; */
+                /* 背景图片 */
+                background-image: url(caodi.png);
+                /* 背景图大小 */
+                background-size: 100% 100%;
+                /* 相对定位 */
+                position: relative
+            }
+            div{
+                /* 设置宽高 */
+                width: 350px;
+                height: 350px; 
+                /* 设置背景图 */
+                background-image: url(fengche.png);
+                /* 背景图大小 */
+                background-size: contain;
+                /* 绝对定位 */
+                position: absolute;
+                top: 40px;
+                left: 265px;
+                /* 做动画：什么动画rot  多少时间2s  多少次（无数次） */
+                animation: rot 2s linear infinite;
+            }
+            div:nth-child(2){
+                width: 150px;
+                height: 150px;
+                top: 280px;
+                left: 591px;
+            }
+            div:nth-child(3){
+                width: 250px;
+                height: 250px;
+                top: 180px;
+                left: 729px;
+            }
+            /* 鼠标悬停 */
+            div:hover{
+                /* 动画时间 */
+                animation-duration: 1s;
+            }
+            /* 处于活跃状态（按下不松开） */
+            div:active{
+                /* 动画的播放状态：暂停 */
+                animation-play-state: paused;
+            }
+            /* 定义一个关键帧动画 */
+            @keyframes rot{
+                from{
+                    /* transform变换 */
+                    /* rotate旋转 */
+                    transform: rotate(0);
+                }
+                to{
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div></div>
+            <div></div>
+            <div></div>
+        </main>
+    </body>
 </html>
