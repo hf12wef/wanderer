@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>林溪湾</title>
+        <style>
+            html,body{
+                height: 100%;
+                margin: 0%;
+            }
+            div,img{
+                width: 100%;
+                height: 100%;
+            }
+            ul{
+                /*消除列表样式（去掉列表前编号） */
+                list-style: none;
+                /* 取消外边距 */
+                margin: 0;
+                /* 取消内边界 */
+                padding: 0;
+                /* 绝对定位 */
+                position: absolute;
+                bottom: 30px;
+                left: 30px;
+            }
+            li{
+                /* 外间距 */
+                margin: 20px 0;
+                /* 动画效果2S */
+                animation: slide 2s both;
+            }
+            li:nth-child(2){
+                animation-delay: 0.5s;
+            }
+            li:nth-child(3){
+                animation-delay: 1s;
+            }
+            li:nth-child(4){
+                animation-delay: 1.5s;
+            }
+            li:nth-child(5){
+                animation-delay: 2s;
+            }
+            a{
+                /* 取消下划线 */
+                text-decoration: none;
+                /* 字体颜色 */
+                color: #ccc;
+                background-color: #555;
+                /* 内间距 */
+                padding: 8px 20px;
+                /* 背景图片 */
+                background-image: url(img/right-arrow.png);
+                /* 背景不重复出现 */
+                background-repeat: no-repeat;
+                /* 背景图大小 */
+                background-size: 10px;
+                /* 背景位置 */
+                background-position: 95% 50%;
+                /* 圆角 */
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+            li:nth-child(1) a{
+                padding-right: 50px;
+            }
+            li:nth-child(2) a{
+                padding-right: 50px;
+            }
+            li:nth-child(3) a{
+                padding-right: 55px;
+            }
+            li:nth-child(4) a{
+                padding-right: 50px;
+            }
+            li:nth-child(5) a{
+                padding-right: 90px;
+            }
+
+             /* 定义一个关键帧动画 */
+             @keyframes slide{
+                 0%{
+                     /* transform平移 */
+                     transform: rotate(0) translate(-250px);
+                 }
+                 100%{
+                     transform: rotate(360deg) translate(0);
+                 }
+             }
+        </style>
+    </head>
+    <body>
+        <!-- 图片 -->
+        <div>
+            <img src="img/lxw.jpg" alt="">
+        </div>
+        <!-- 无序列表 -->
+        <ul>
+            <li><a href="">楼盘详情</a></li>
+            <li><a href="">全景户型</a></li>
+            <li><a href="">项目图册</a></li>
+            <li><a href="">预约看房</a></li>
+            <li><a href="">房贷计算器</a></li>
+        </ul>
+    </body>
+</html>

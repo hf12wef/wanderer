@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>九溪郡</title>
+        <style>
+            html,body{
+                height: 100%;
+                margin: 0%;
+            }  
+            div,img{
+                width: 100%;
+                height: 100%;
+            }
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                bottom: 30px;
+                left: 30px;
+            }
+            li{
+                margin: 20px 0;
+                animation: slide 2s both;
+            }
+            li:nth-child(2){
+                animation-delay: 0.5s;
+            }
+            li:nth-child(3){
+                animation-delay: 1s;
+            }
+            li:nth-child(4){
+                animation-delay: 1.5s;
+            }
+            li:nth-child(5){
+                animation-delay: 2s;
+            }
+            a{
+                text-decoration: none;
+                color: #ccc;
+                background-color: #555;
+                padding: 8px 20px;
+                background-image:url(img/right-arrow.png);
+                background-repeat: no-repeat;
+                background-size: 10px;
+                background-position: 95% 50%;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+            li:nth-child(1) a{
+                padding-right: 50px;
+            }
+            li:nth-child(2) a{
+                padding-right: 50px;
+            }
+            li:nth-child(3) a{
+                padding-right: 55px;
+            }
+            li:nth-child(4) a{
+                padding-right: 50px;
+            }
+            li:nth-child(5) a{
+                padding-right: 90px;
+            }
+            @keyframes slide{
+                0%{
+                    transform: rotate(0) translate(-250px);
+                }
+                100%{
+                    transform: rotate(360deg) translate(0);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <img src="img/jxj.jpg" alt="">
+        </div>
+        <ul>
+            <li><a href="">楼盘详情</a></li>
+            <li><a href="">全景户型</a></li>
+            <li><a href="">项目图册</a></li>
+            <li><a href="">预约看房</a></li>
+            <li><a href="">房贷计算器</a></li>
+        </ul>
+    </body>
+</html>
