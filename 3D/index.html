@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>立方体</title>
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            background:radial-gradient(circle,red,blue,green);
+        }
+        body{
+            /* 弹性布局 */
+            display: flex;
+            /* 上下左右居中 */
+            justify-content: center;
+            align-items: center;
+            /* 调整景深 */
+            perspective: 1500px;
+        }
+        main {
+            /* background-color: red; */
+            width: 300px;
+            height: 300px;
+           /* 让子元素以3D样式布局 */
+           transform-style: preserve-3d;
+           /* 做动画 */
+           animation: rot 5s infinite;
+        }
+        main div{
+            /* border-radius: 80%; */
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            background-size: 100% 100%;
+            opacity: 0.5;
+            border: 3px dashed black;
+        }
+        .qian{
+            background-image: url(1.jpg);
+            transform: translateZ(150px);
+        }
+        .hou{
+            background-image: url(2.jpg);
+            transform: rotateX(-180deg)translateZ(150px);
+        }
+        .shang{
+            background-image: url(3.jpg);
+            transform: rotateX(90deg)translateZ(150px);
+        }
+        .xia{
+            background-image: url(4.jpg);
+            transform: rotateX(-90deg)translateZ(150px);
+        }
+        .zhou{
+            background-image: url(5.jpg);
+            transform: rotateY(90deg)translateZ(150px);
+        }
+        .you{
+            background-image: url(6.jpg);
+            transform: rotateY(-90deg)translateZ(150px);
+        }
+        @keyframes rot{
+            from{
+               transform: rotateX(0) rotateY(0); 
+            }
+            to{
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="qian"></div>
+        <div class="hou"></div>
+        <div class="shang"></div>
+        <div class="xia"></div>
+        <div class="zhou"></div>
+        <div class="you"></div>
+    </main>
+</body>
+</html>
