@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>音乐播放器</title>
+		<link rel="stylesheet" type="text/css" href="glyphicon.css" />
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+			}
+			
+			body {
+				background-color: #333;
+				/* 弹性布局 */
+				display: flex;
+				/* 左右居中 */
+				justify-content: center;
+				/* 上下居中 */
+				align-items: center;
+				/*弹性布局方向   direction方向 column列布局 row行排列（默认）*/
+				flex-direction: column;
+			}
+			
+			main {
+				-moz-user-select: none;
+				width: 300px;
+				height: 300px;
+				background-color: rgb(247, 13, 50);
+				border-radius: 10px;
+				box-shadow: 3px 3px 20px black;
+				/*	background-image: url(wf.png);*/
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				background-position: 0 0;
+				animation-duration: 1s;
+			}
+			
+			@keyframes bgSlideleft {
+				from {
+					background-position: -300px 0;
+				}
+				to {
+					background-position: 0 0;
+				}
+			}
+			
+			@keyframes bgSlideright {
+				from {
+					background-position: 300px 0;
+				}
+				to {
+					background-position: 0 0;
+				}
+			}
+			
+			header {
+				width: 100%;
+				height: 95px;
+				background-color: black;
+				opacity: 0.9;
+				border-radius: 10px 10px 0 0;
+				text-align: center;
+				color: white;
+				box-sizing: border-box;
+				padding: 20px 0;
+			}
+			
+			h1 {
+				font-size: 30px;
+				font-weight: normal;
+			}
+			
+			h2 {
+				font-size: 20px;
+				font-weight: normal;
+			}
+			
+			progress {
+				width: 100%;
+				border: 0;
+				height: 5px;
+				display: block;
+				opacity: 0.8;
+			}
+			/*谷歌*/
+			::-webkit-progress-bar {
+				/*谷歌进度条的背景色*/
+				background-color: black;
+			}
+			::-webkit-progress-value {
+				/*谷歌进度条的前景色*/
+				background-color: orangered;
+			}
+			/*火狐*/
+			::-moz-progress-bar {
+				background-color: orangered;
+			}
+			
+			footer {
+				color: #aaa;
+				height: 200px;
+				background-color: brown;
+				opacity: 0.9;
+				border-bottom-right-radius: 10px;
+				border-bottom-left-radius: 10px;
+				text-align: center;
+			}
+			
+			footer time {
+				display: inline-block;
+				font-size: 30px;
+				font-weight: 100;
+				padding: 20px 0;
+			}
+			
+			footer div.control span:nth-child(1) {
+				font-size: 30px;
+				position: relative;
+				top: -13px;
+				left: -25px;
+			}
+			
+			footer div.control span:nth-child(2) {
+				font-size: 60px;
+			}
+			
+			footer div.control span:nth-child(3) {
+				font-size: 30px;
+				position: relative;
+				top: -13px;
+				left: 25px;
+			}
+			
+			footer span:hover {
+				color: white;
+				/*box-shadow: 0 0 20px #eee;*/
+			}
+			
+			footer div.volume progress {
+				width: 100px;
+				height: 2px;
+				display: inline-block;
+			}
+			
+			footer div.volume {
+				padding-top: 30px;
+			}
+			
+			footer div.volume progress {
+				width: 100px;
+				height: 2px;
+				display: inline-block;
+				position: relative;
+				top: -9px;
+			}
+			address{
+				font-size: 20px;
+				color: wheat;
+				margin-top: 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<audio src="传奇.mp3"></audio>
+		<main>
+			<header>
+				<h1></h1>
+				<h2></h2>
+			</header>
+			<progress value="0" id="id1"></progress>
+			<footer>
+				<time>0:00</time>
+				<div class="control">
+					<span class="glyphicon glyphicon-backward" onclick="previous()"></span>
+					<span class="wo glyphicon glyphicon-play" onclick="playpause()"></span>
+					<span class="glyphicon glyphicon-forward" onclick="next()"></span>
+				</div>
+				<div class="volume">
+					<span class="glyphicon glyphicon-volume-down" id="vd" onclick="volumedown()"></span>
+					<progress value="0.5" id="id2"></progress>
+					<span class="glyphicon glyphicon-volume-up" onclick="volumeup()"></span>
+				</div>
+			</footer>
+		</main>
+		<address>powered By Zhiyou</address>
+	</body>
+	<script type="text/javascript">
+		var playList = [{
+				pic: "music/传奇.mp3",
+				name: "传奇",
+				singer: "王菲",
+				src: "url(music/wf.png)"
+			},
+			{
+				pic: "music/知道不知道.mp3",
+				name: "知道不知道",
+				singer: "刘若英",
+				src: "url(music/lry.jpg)"
+			},
+			{
+				pic: "music/传奇.mp3",
+				name: "传奇1",
+				singer: "王菲1",
+				src: "url(music/wf.png)"
+			},
+			{
+				pic: "music/知道不知道.mp3",
+				name: "知道不知道1",
+				singer: "刘若英1",
+				src: "url(music/lry.jpg)"
+			}
+		];
+		var current = 0;
+		var h1 = document.getElementsByTagName("h1")[0];
+		var h2 = document.getElementsByTagName("h2")[0];
+		var main = document.getElementsByTagName("main")[0];
+		var aud = document.getElementsByTagName("audio")[0];
+		var volume1 = document.getElementsByTagName("progress")[1];
+		var vd=document.getElementById("vd");
+		var id1=document.getElementById("id1");
+		var id2 = document.getElementById("id2");
+		var time= document.getElementsByTagName("time")[0];
+		aud.volume = 0.5;
+		playSong();
+		function playSong() {
+			var song = playList[current];
+			h1.innerHTML = song.name;
+			h2.innerHTML = song.singer;
+			main.style.backgroundImage = song.src;
+			aud.src = song.pic;
+		    setTimeout(function(){main.style.animationName= "";},500);
+		}
+		function previous() {
+			current--;
+			if(current < 0){
+				current=playList.length-1;
+			}
+			main.style.animationName = "bgSlideright";
+			playSong();
+			playpause();
+		}
+		function playpause() {
+			if(aud.paused){
+				playSong();
+			    aud.play();  
+			    document.getElementsByClassName("wo")[0].className = "wo glyphicon glyphicon-pause";
+			}else{
+				aud.pause();
+				document.getElementsByClassName("wo")[0].className = "wo glyphicon glyphicon-play";
+			}
+		}
+		function next() {
+			current++;
+			if(current>playList.length-1){
+				current = 0;
+			}
+			main.style.animationName = "bgSlideleft";	
+			playSong();
+			playpause();
+		}
+		function volumedown(){		
+			if(aud.volume-0.2> 0){
+				aud.volume=aud.volume - 0.1;
+				volume1.value = aud.volume;
+			}else{
+				aud.volume=0;
+				volume1.value = aud.volume;
+				vd.className = "glyphicon glyphicon-volume-off";
+			}
+//		console.log(aud.volume);
+			
+		}
+		function volumeup(){
+			if(aud.volume+0.1< 1){
+				vd.className = "glyphicon glyphicon-volume-down";
+				aud.volume = aud.volume + 0.1;
+				volume1.value = aud.volume;
+			}
+//			console.log(aud.volume);
+		}
+		//监听函数，监听aud的歌曲时间改变
+		aud.addEventListener("timeupdate",function(){
+			if(aud.duration){
+				id1.value = aud.currentTime/aud.duration;
+			}
+			var seconds = Math.ceil(aud.currentTime);time.innerHTML = seconds;
+			
+		});
+	</script>
+
+</html>
