@@ -29,7 +29,7 @@ function flake(){
         }
         snow.style.left = left+"px";
         snow.style.top = top+"px";
-    },10);
+    },50);
 }
 for(var i=0; i<30; i++){
     flake();
